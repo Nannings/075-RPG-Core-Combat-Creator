@@ -15,9 +15,10 @@ public class CursorAffordance : MonoBehaviour
     private void Start()
     {
         cameraRaycaster = GetComponent<CameraRaycaster>();
+        cameraRaycaster.layerChangeObservers += OnLayerChanged;
     }
 
-    private void LateUpdate()
+    private void OnLayerChanged()
     {
         switch (cameraRaycaster.currentLayerHit)
         {
