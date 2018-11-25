@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 570e46cea2f38664d81d9fd7fff8e93d, type: 2}
 --- !u!4 &10675769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4962837608881054, guid: 870a4b8f3384f0e4bb93b023e41b09e9,
@@ -189,6 +189,10 @@ Prefab:
     - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
       propertyPath: m_Name
       value: Bridge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
@@ -2193,6 +2197,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
   m_IsPrefabAsset: 0
@@ -2273,6 +2281,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc8858c31f569014cb9198b58427d5ad, type: 2}
+    - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
   m_IsPrefabAsset: 0
@@ -2459,15 +2471,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -32.13
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.784
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -4.22
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4225,6 +4237,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc8858c31f569014cb9198b58427d5ad, type: 2}
+    - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
   m_IsPrefabAsset: 0
@@ -6079,6 +6095,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc8858c31f569014cb9198b58427d5ad, type: 2}
+    - target: {fileID: 1011353266085596, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165b912375b38b44289ebfcd72b0c87b, type: 2}
   m_IsPrefabAsset: 0
@@ -6342,7 +6362,7 @@ GameObject:
   - component: {fileID: 1950937394}
   - component: {fileID: 1950937393}
   m_Layer: 8
-  m_Name: Terrain
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
