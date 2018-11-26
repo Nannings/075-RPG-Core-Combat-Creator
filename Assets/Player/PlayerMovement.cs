@@ -54,23 +54,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessMouseMovement()
     {
-        if (Input.GetMouseButton(0))
-        {
-            clickPoint = cameraRaycaster.hit.point;
-            switch (cameraRaycaster.currentLayerHit)
-            {
-                case Layer.Walkable:
-                    currentDestination = ShortDestination(clickPoint, walkMoveStopRadius);
-                    break;
-                case Layer.Enemy:
-                    currentDestination = ShortDestination(clickPoint, attackMoveStopRadius);
-                    break;
-                default:
-                    print("Unexpected layer found");
-                    return;
-            }
-        }
-        WalkToDestination();
+        //if (Input.GetMouseButton(0))
+        //{
+        //    clickPoint = cameraRaycaster.hit.point;
+        //    switch (cameraRaycaster.currentLayerHit)
+        //    {
+        //        case Layer.Walkable:
+        //            currentDestination = ShortDestination(clickPoint, walkMoveStopRadius);
+        //            break;
+        //        case Layer.Enemy:
+        //            currentDestination = ShortDestination(clickPoint, attackMoveStopRadius);
+        //            break;
+        //        default:
+        //            print("Unexpected layer found");
+        //            return;
+        //    }
+        //}
+        //WalkToDestination();
     }
 
     private void WalkToDestination()
