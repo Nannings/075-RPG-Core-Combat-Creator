@@ -7,7 +7,9 @@ public class CursorAffordance : MonoBehaviour {
 
     [SerializeField] Texture2D walkCursor = null;
     [SerializeField] Texture2D unknownCursor = null;
-    [SerializeField] Texture2D targetCursor = null;
+	[SerializeField] Texture2D targetCursor = null;
+	[SerializeField] Texture2D buttonCursor = null;
+
     [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
     CameraRaycaster cameraRaycaster;
@@ -15,25 +17,24 @@ public class CursorAffordance : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cameraRaycaster = GetComponent<CameraRaycaster>();
-        cameraRaycaster.onLayerChange += OnLayerChanged; // registering
+        cameraRaycaster.notifyLayerChangeObservers += OnLayerChanged; // registering
 	}
 
-    void OnLayerChanged(Layer newLayer) {
-        print("Cusor over new layer");
+    void OnLayerChanged(int newLayer) {
         switch (newLayer)
         {
-            case Layer.Walkable:
-                Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            case Layer.RaycastEndStop:
-                Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            case Layer.Enemy:
-                Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            default:
-                Debug.LogError("Don't know what cursor to show");
-                return;
+		case 5: // TODO make cameraRaycaster member variables
+			Cursor.SetCursor (buttonCursor, cursorHotspot, CursorMode.Auto);
+			break;
+		case 8:
+            Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
+            break;
+        case 9:
+            Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
+            break;
+        default:
+			Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
+            return;
         }
     }
 
