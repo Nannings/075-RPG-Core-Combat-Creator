@@ -12,6 +12,9 @@ public class CursorAffordance : MonoBehaviour {
 
     [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
+    [SerializeField] const int walkableLayerNumber = 8;
+    [SerializeField] const int enemyLayerNumber = 9;
+
     CameraRaycaster cameraRaycaster;
 
 	// Use this for initialization
