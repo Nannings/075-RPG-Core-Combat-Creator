@@ -20,14 +20,13 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void Start()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         aiCharacterControl = GetComponent<AICharacterControl>();
-        print(aiCharacterControl);
     }
 
-    private void Update()
+    void Update()
     {
         float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         if (distanceToPlayer <= attackRadius)

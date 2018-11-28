@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 7a13393eb685f43b2a8c0cf71819ed06
-labels:
-- Ray
 timeCreated: 1488801761
 licenseType: Free
 TextureImporter:
@@ -53,14 +51,6 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1

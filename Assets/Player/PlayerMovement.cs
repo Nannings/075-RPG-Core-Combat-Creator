@@ -8,12 +8,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof (ThirdPersonCharacter))]
 public class PlayerMovement : MonoBehaviour
 {
-    ThirdPersonCharacter thirdPersonCharacter;   // A reference to the ThirdPersonCharacter on the object
-    CameraRaycaster cameraRaycaster;
+    ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
+    CameraRaycaster cameraRaycaster = null;
     Vector3 currentDestination, clickPoint;
     AICharacterControl aiCharacterControl = null;
     GameObject walkTarget = null;
 
+    // TODO solve fight between serialize and const
     [SerializeField] const int walkableLayerNumber = 8;
     [SerializeField] const int enemyLayerNumber = 9;
 
@@ -30,23 +31,28 @@ public class PlayerMovement : MonoBehaviour
         cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
 
+
     void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
     {
         switch (layerHit)
         {
-            case walkableLayerNumber:
-                walkTarget.transform.position = raycastHit.point;
-                aiCharacterControl.SetTarget(walkTarget.transform);
-                break;
             case enemyLayerNumber:
+                // navigate to the enemy
                 GameObject enemy = raycastHit.collider.gameObject;
                 aiCharacterControl.SetTarget(enemy.transform);
                 break;
-            default:
+            case walkableLayerNumber:
+                // navigate to point on the ground
+                walkTarget.transform.position = raycastHit.point;
+                aiCharacterControl.SetTarget(walkTarget.transform);
                 break;
+            default:
+                Debug.LogWarning("Don't know how to handle mouse click for player movement");
+                return;
         }
     }
 
+    // TODO make this get called again
     void ProcessDirectMovement()
     {
         float h = Input.GetAxis("Horizontal");
@@ -59,4 +65,3 @@ public class PlayerMovement : MonoBehaviour
         thirdPersonCharacter.Move(movement, false, false);
     }
 }
-

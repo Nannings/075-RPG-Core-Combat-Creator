@@ -658,8 +658,8 @@ GameObject:
   - component: {fileID: 5426510}
   - component: {fileID: 13615390}
   - component: {fileID: 11469404}
-  - component: {fileID: 195386073931110694}
-  - component: {fileID: 114682776392889936}
+  - component: {fileID: 195193874864282842}
+  - component: {fileID: 114186531572896996}
   - component: {fileID: 114554311007907348}
   m_Layer: 9
   m_Name: Enemy
@@ -1374,7 +1374,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
   m_LocalRotation: {x: -0, y: 0.94037, z: -0, w: 0.34015328}
-  m_LocalPosition: {x: -6.0909777, y: 0, z: -0.81594276}
+  m_LocalPosition: {x: -2.7246857, y: 3.2345428, z: -23.928543}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 469942}
@@ -2456,7 +2456,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2489,13 +2489,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 3600
-  m_StationaryTurnSpeed: 1800
+  m_MovingTurnSpeed: 1800
+  m_StationaryTurnSpeed: 900
   m_JumpPower: 6
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 4
-  m_AnimSpeedMultiplier: 5
+  m_MoveSpeedMultiplier: 0.5
+  m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
 --- !u!136 &13615390
 CapsuleCollider:
@@ -2734,6 +2734,18 @@ Transform:
   m_Father: {fileID: 408730}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114186531572896996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!114 &114554311007907348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2747,18 +2759,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
   attackRadius: 4
---- !u!114 &114682776392889936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114917380297460492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2772,7 +2772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1311539807392560, guid: 9a9d70d10b9331d469e57254147e0430,
     type: 2}
---- !u!195 &195386073931110694
+--- !u!195 &195193874864282842
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2784,8 +2784,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_AngularSpeed: 50
+  m_StoppingDistance: 1.3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
