@@ -10,31 +10,22 @@ public class Enemy : MonoBehaviour, IDamageable {
 
     [SerializeField] float attackRadius = 4f;
     [SerializeField] float damagePerShot = 9f;
-    [SerializeField] float secondsBetweenShots = .5f;
+    [SerializeField] float secondsBetweenShots = 0.5f;
     [SerializeField] GameObject projectileToUse;
     [SerializeField] GameObject projectileSocket;
-    [SerializeField] Vector3 verticalAimOffset = new Vector3(0, 1f, 0);
+    [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
 
     bool isAttacking = false;
     float currentHealthPoints;
     AICharacterControl aiCharacterControl = null;
     GameObject player = null;
 
-    public float healthAsPercentage
-    {
-        get
-        {
-            return currentHealthPoints / maxHealthPoints;
-        }
-    }
+    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; }}
 
     public void TakeDamage(float damage)
     {
-        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0, maxHealthPoints);
-        if (currentHealthPoints <= 0)
-        {
-            Destroy(transform.gameObject);
-        }
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        if (currentHealthPoints <= 0) { Destroy(gameObject); }
     }
 
     void Start()
@@ -50,13 +41,13 @@ public class Enemy : MonoBehaviour, IDamageable {
         if (distanceToPlayer <= attackRadius && !isAttacking)
         {
             isAttacking = true;
-            InvokeRepeating("SpawnProjectile", 0, secondsBetweenShots);
+            InvokeRepeating("SpawnProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
         }
-
+        
         if (distanceToPlayer > attackRadius)
         {
-            CancelInvoke();
             isAttacking = false;
+            CancelInvoke();
         }
 
         if (distanceToPlayer <= chaseRadius)
@@ -72,20 +63,22 @@ public class Enemy : MonoBehaviour, IDamageable {
     void SpawnProjectile()
     {
         GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
-        var projectileComponent = newProjectile.GetComponent<Projectile>();
+        Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.SetDamage(damagePerShot);
 
-        Vector3 unitVectorToPlayer = (player.transform.position + verticalAimOffset - projectileSocket.transform.position).normalized;
+        Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
         float projectileSpeed = projectileComponent.projectileSpeed;
         newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        // Draw attack sphere 
+        Gizmos.color = new Color(255f, 0, 0, .5f);
         Gizmos.DrawWireSphere(transform.position, attackRadius);
 
-        Gizmos.color = Color.blue;
+        // Draw chase sphere 
+        Gizmos.color = new Color(0, 0, 255, .5f);
         Gizmos.DrawWireSphere(transform.position, chaseRadius);
     }
 }
