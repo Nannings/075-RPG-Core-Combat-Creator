@@ -28,7 +28,7 @@ namespace RPG.weapons
         void OnCollisionEnter(Collision collision)
         {
             var layerCollideWith = collision.gameObject.layer;
-            if (layerCollideWith != shooter.layer)
+            if (shooter && layerCollideWith != shooter.layer)
             {
                 DamageIfDamageables(collision);
             }
