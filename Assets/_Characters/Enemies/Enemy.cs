@@ -1,9 +1,11 @@
-﻿using RPG.Core;
-using RPG.weapons;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
+
+// TODO consider re-wire
+using RPG.Core;
+using RPG.Weapons;
 
 namespace RPG.Characters
 {
@@ -65,6 +67,7 @@ namespace RPG.Characters
             }
         }
 
+        // TODO separate out Character firing logic
         void FireProjectile()
         {
             GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);

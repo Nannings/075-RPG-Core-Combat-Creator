@@ -1,18 +1,18 @@
-﻿using RPG.Core;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.weapons
+// TODO consider re-wire
+using RPG.Core;
+
+namespace RPG.Weapons
 {
     public class Projectile : MonoBehaviour
     {
-
-        [SerializeField] float projectileSpeed; // Note other classes can set
+        [SerializeField] float projectileSpeed;
+        [SerializeField] GameObject shooter; // So can inspected when paused
 
         const float DESTROY_DELAY = 0.01f;
-        [SerializeField] GameObject shooter;
         float damageCaused;
 
         public void SetShooter(GameObject shooter)
@@ -25,16 +25,21 @@ namespace RPG.weapons
             damageCaused = damage;
         }
 
+        public float GetDefaultLaunchSpeed()
+        {
+            return projectileSpeed;
+        }
+
         void OnCollisionEnter(Collision collision)
         {
-            var layerCollideWith = collision.gameObject.layer;
-            if (shooter && layerCollideWith != shooter.layer)
+            var layerCollidedWith = collision.gameObject.layer;
+            if (shooter && layerCollidedWith != shooter.layer)
             {
-                DamageIfDamageables(collision);
+                DamageIfDamageable(collision);
             }
         }
 
-        private void DamageIfDamageables(Collision collision)
+        private void DamageIfDamageable(Collision collision)
         {
             Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
             if (damagableComponent)
@@ -42,11 +47,6 @@ namespace RPG.weapons
                 (damagableComponent as IDamageable).TakeDamage(damageCaused);
             }
             Destroy(gameObject, DESTROY_DELAY);
-        }
-
-        internal float GetDefaultLaunchSpeed()
-        {
-            return projectileSpeed;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.weapons
+namespace RPG.Weapons
 {
     [CreateAssetMenu(menuName = ("RPG/Weapon"))]
     public class Weapon : ScriptableObject
@@ -17,6 +17,7 @@ namespace RPG.weapons
 
         public float GetMinTimeBetweenHits()
         {
+            // TODO consdier whether we take animation time into account
             return minTimeBetweenHits;
         }
 
@@ -29,14 +30,15 @@ namespace RPG.weapons
         {
             return weaponPrefab;
         }
-
+        
         public AnimationClip GetAttackAnimClip()
         {
-            StripAnimationEvents();
+            RemoveAnimationEvents();
             return attackAnimation;
         }
 
-        private void StripAnimationEvents()
+        // So that asset packs cannot cause crashes
+        private void RemoveAnimationEvents()
         {
             attackAnimation.events = new AnimationEvent[0];
         }
