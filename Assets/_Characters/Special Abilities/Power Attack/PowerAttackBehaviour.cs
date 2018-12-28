@@ -20,7 +20,7 @@ namespace RPG.Characters
 
         public void Use()
         {
-
+            print("power");
         }
     }
 }
