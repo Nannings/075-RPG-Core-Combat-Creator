@@ -13,6 +13,11 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
+        private void Start()
+        {
+            print(gameObject.name);
+        }
+
         public void Use()
         {
 

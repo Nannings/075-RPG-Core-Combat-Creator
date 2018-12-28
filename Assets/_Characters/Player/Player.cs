@@ -18,6 +18,9 @@ namespace RPG.Characters
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
+        [SerializeField] SpecialAbilityConfig ability1;
+
+
         Animator animator;
         float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
@@ -31,6 +34,7 @@ namespace RPG.Characters
             SetCurrentMaxHealth();
             PutWeaponInHand();
             SetupRuntimeAnimator();
+            ability1.AddComponent(gameObject);
         }
 
         public void TakeDamage(float damage)
@@ -71,14 +75,27 @@ namespace RPG.Characters
         private void RegisterForMouseClick()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.onMouseOverEnemy += onMouseOverEnemy;
+            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        private void onMouseOverEnemy(Enemy enemy)
+        private void OnMouseOverEnemy(Enemy enemy)
         {
             if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
                 AttackTarget(enemy);
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                AttemptSpecialAbility1(enemy);
+            }
+        }
+
+        private void AttemptSpecialAbility1(Enemy enemy)
+        {
+            var energyComponent = GetComponent<Energy>();
+            if (energyComponent.IsEnergyAvailable(10f))
+            {
+                energyComponent.ConsumeEnergy(10f);
             }
         }
 
