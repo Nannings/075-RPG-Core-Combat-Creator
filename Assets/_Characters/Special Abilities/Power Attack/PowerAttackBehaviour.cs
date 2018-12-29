@@ -15,12 +15,12 @@ namespace RPG.Characters
 
         private void Start()
         {
-            print(gameObject.name);
         }
 
-        public void Use()
+        public void Use(AbilityUseParams useParams)
         {
-            print("power");
+            float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
+            useParams.target.TakeDamage(damageToDeal);
         }
     }
 }
