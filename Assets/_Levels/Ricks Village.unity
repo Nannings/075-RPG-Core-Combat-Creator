@@ -5930,6 +5930,11 @@ PrefabInstance:
       propertyPath: pointsPerHit
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8553333821069368711, guid: 7737647c22c1fc64a88d5cd030c352ce,
+        type: 3}
+      propertyPath: regenPointsPerSecond
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1497196993364970, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_IsActive
       value: 1
