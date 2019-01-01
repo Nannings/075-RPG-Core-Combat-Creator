@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +13,21 @@ namespace RPG.Characters
             this.config = configToSet;
         }
 
-        private void Start()
+        // Use this for initialization
+        void Start()
         {
+            print("Power Attack behaviour attached to " + gameObject.name);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
         }
 
         public void Use(AbilityUseParams useParams)
         {
+            print("Power attack used by: " + gameObject.name);
             float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
             useParams.target.TakeDamage(damageToDeal);
         }

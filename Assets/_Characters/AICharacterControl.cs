@@ -11,6 +11,7 @@ namespace RPG.Characters
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
 
+
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
@@ -20,6 +21,7 @@ namespace RPG.Characters
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;
         }
+
 
         private void Update()
         {
@@ -32,13 +34,14 @@ namespace RPG.Characters
             }
             else
             {
-                if(GetComponent<Enemy>())
+                if (GetComponent<Enemy>())
                 {
                     agent.velocity = Vector3.zero;
                 }
                 character.Move(Vector3.zero, false, false);
             }
         }
+
 
         public void SetTarget(Transform target)
         {

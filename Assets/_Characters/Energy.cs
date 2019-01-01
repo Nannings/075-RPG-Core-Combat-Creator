@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace RPG.Characters
 {
     public class Energy : MonoBehaviour
@@ -12,15 +11,17 @@ namespace RPG.Characters
         [SerializeField] float regenPointsPerSecond = 1f;
 
         float currentEnergyPoints;
+        CameraUI.CameraRaycaster cameraRaycaster;
 
-        private void Start()
+        // Use this for initialization
+        void Start()
         {
             currentEnergyPoints = maxEnergyPoints;
         }
 
-        private void Update()
+        void Update()
         {
-            if(currentEnergyPoints < maxEnergyPoints)
+            if (currentEnergyPoints < maxEnergyPoints)
             {
                 AddEnergyPoints();
                 UpdateEnergyBar();
@@ -47,6 +48,7 @@ namespace RPG.Characters
 
         private void UpdateEnergyBar()
         {
+            // TODO remove magic numbers
             float xValue = -(EnergyAsPercent() / 2f) - 0.5f;
             energyBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
         }

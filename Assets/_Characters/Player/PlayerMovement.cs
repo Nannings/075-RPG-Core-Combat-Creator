@@ -11,36 +11,36 @@ namespace RPG.Characters
     public class PlayerMovement : MonoBehaviour
     {
         ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
-        CameraRaycaster cameraRaycaster = null;
+        CameraUI.CameraRaycaster cameraRaycaster = null;
         Vector3 clickPoint;
         AICharacterControl aiCharacterControl = null;
         GameObject walkTarget = null;
 
         void Start()
         {
-            cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
+            cameraRaycaster = Camera.main.GetComponent<CameraUI.CameraRaycaster>();
             thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
             aiCharacterControl = GetComponent<AICharacterControl>();
             walkTarget = new GameObject("walkTarget");
 
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
-            cameraRaycaster.onMouseOverEnemy += onMouseOverEnemy;
+            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        private void onMouseOverEnemy(Enemy enemy)
-        {
-            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
-            {
-                aiCharacterControl.SetTarget(enemy.transform);
-            }
-        }
-
-        private void OnMouseOverPotentiallyWalkable(Vector3 destination)
+        void OnMouseOverPotentiallyWalkable(Vector3 destination)
         {
             if (Input.GetMouseButton(0))
             {
-                walkTarget.transform.position = destination;
-                aiCharacterControl.SetTarget(walkTarget.transform);
+				walkTarget.transform.position = destination;
+				aiCharacterControl.SetTarget(walkTarget.transform);  
+            }    
+        }
+
+        void OnMouseOverEnemy(Enemy enemy)
+        {
+            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
+            {
+                aiCharacterControl.SetTarget(enemy.transform);
             }
         }
 

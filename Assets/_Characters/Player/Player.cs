@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +18,8 @@ namespace RPG.Characters
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
+        // Temporarily serialized for dubbing
         [SerializeField] SpecialAbility[] abilities;
-
 
         Animator animator;
         float currentHealthPoints;
@@ -34,7 +34,7 @@ namespace RPG.Characters
             SetCurrentMaxHealth();
             PutWeaponInHand();
             SetupRuntimeAnimator();
-            abilities[0].AttackComponentTo(gameObject);
+            abilities[0].AttachComponentTo(gameObject);
         }
 
         public void TakeDamage(float damage)
@@ -74,11 +74,11 @@ namespace RPG.Characters
 
         private void RegisterForMouseClick()
         {
-            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+            cameraRaycaster = FindObjectOfType<CameraUI.CameraRaycaster>();
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        private void OnMouseOverEnemy(Enemy enemy)
+        void OnMouseOverEnemy(Enemy enemy)
         {
             if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
