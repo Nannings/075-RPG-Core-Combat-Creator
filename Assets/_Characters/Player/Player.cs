@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 // TODO consider re-wire...
 using RPG.CameraUI;
@@ -38,6 +39,26 @@ namespace RPG.Characters
         }
 
         public void TakeDamage(float damage)
+        {
+            if (currentHealthPoints - damage <= 0)
+            {
+                ReduceHealth(damage);
+                StartCoroutine(KillPlayer());
+            }
+            else
+            {
+                ReduceHealth(damage);
+            }
+        }
+
+        IEnumerator KillPlayer()
+        {
+            Debug.Log("death sound");
+            yield return new WaitForSecondsRealtime(1);
+            SceneManager.LoadScene(0);
+        }
+
+        private void ReduceHealth(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         }
