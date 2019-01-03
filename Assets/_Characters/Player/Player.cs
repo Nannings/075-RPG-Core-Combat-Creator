@@ -18,10 +18,13 @@ namespace RPG.Characters
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
+        [SerializeField] AudioClip[] damageSounds;
+        [SerializeField] AudioClip[] deathSounds;
 
         // Temporarily serialized for dubbing
         [SerializeField] SpecialAbility[] abilities;
 
+        AudioSource audioSource;
         Animator animator;
         float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
@@ -36,25 +39,27 @@ namespace RPG.Characters
             PutWeaponInHand();
             SetupRuntimeAnimator();
             abilities[0].AttachComponentTo(gameObject);
+            audioSource = GetComponent<AudioSource>();
         }
 
         public void TakeDamage(float damage)
         {
-            if (currentHealthPoints - damage <= 0)
+            ReduceHealth(damage);
+            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
+            audioSource.Play();
+            bool playerDies = currentHealthPoints - damage <= 0;
+            if (playerDies)
             {
-                ReduceHealth(damage);
                 StartCoroutine(KillPlayer());
-            }
-            else
-            {
-                ReduceHealth(damage);
             }
         }
 
         IEnumerator KillPlayer()
         {
-            Debug.Log("death sound");
-            yield return new WaitForSecondsRealtime(1);
+            audioSource.clip = damageSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+
+            yield return new WaitForSecondsRealtime(audioSource.clip.length);
             SceneManager.LoadScene(0);
         }
 
