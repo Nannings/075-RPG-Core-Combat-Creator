@@ -188,7 +188,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0d0b40550ce6cf1479c67faa96b74095, type: 3}
   abilities:
   - {fileID: 11400000, guid: 8ca914442b46540d1b48580b2599b2e4, type: 2}
-  - {fileID: 11400000, guid: 8ca914442b46540d1b48580b2599b2e4, type: 2}
+  - {fileID: 11400000, guid: 87b1244f6029d4a0f850297a5dfedd7a, type: 2}
 --- !u!114 &114401487052103182
 MonoBehaviour:
   m_ObjectHideFlags: 0
