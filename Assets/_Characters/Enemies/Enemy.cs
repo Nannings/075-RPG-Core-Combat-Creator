@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace RPG.Characters
         [SerializeField] float attackRadius = 4f;
         [SerializeField] float damagePerShot = 9f;
         [SerializeField] float firingPeriodInS = 0.5f;
-        [SerializeField] float firingPeriodVariation = .1f;
+        [SerializeField] float firingPeriodVariation = 0.1f;
         [SerializeField] GameObject projectileToUse;
         [SerializeField] GameObject projectileSocket;
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
@@ -47,7 +47,7 @@ namespace RPG.Characters
             if (player.healthAsPercentage <= Mathf.Epsilon)
             {
                 StopAllCoroutines();
-                Destroy(this);
+                Destroy(this); // To stop enemy behaviour
             }
 
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
@@ -55,7 +55,7 @@ namespace RPG.Characters
             {
                 isAttacking = true;
                 float randomisedDelay = Random.Range(firingPeriodInS - firingPeriodVariation, firingPeriodInS + firingPeriodVariation);
-                InvokeRepeating("FireProjectile", 0f, firingPeriodInS); // TODO switch to coroutines
+                InvokeRepeating("FireProjectile", 0f, randomisedDelay);
             }
 
             if (distanceToPlayer > attackRadius)
