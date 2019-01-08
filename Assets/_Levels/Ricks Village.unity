@@ -12157,15 +12157,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1857464296}
     m_Modifications:
-    - target: {fileID: 1264541407874633085, guid: 7737647c22c1fc64a88d5cd030c352ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6652305751531760237, guid: 7737647c22c1fc64a88d5cd030c352ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+    - target: {fileID: 149790, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12199,17 +12193,23 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 110.934006
+      objectReference: {fileID: 0}
+    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114401487052103182, guid: 7737647c22c1fc64a88d5cd030c352ce,
         type: 3}
       propertyPath: energyOrb
       value: 
       objectReference: {fileID: 1483133243}
-    - target: {fileID: 114633348878164724, guid: 7737647c22c1fc64a88d5cd030c352ce,
-        type: 3}
-      propertyPath: abilities.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87b1244f6029d4a0f850297a5dfedd7a,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
 --- !u!1001 &1622765311
