@@ -8,6 +8,7 @@ using System;
 public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
 
     AreaEffectConfig config;
+    AudioSource audioSource = null;
 
     public void SetConfig(AreaEffectConfig configToSet)
     {
@@ -17,13 +18,16 @@ public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
 	// Use this for initialization
 	void Start () {
 		print("Area Effect behaviour attached to " + gameObject.name);
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 	
 
     public void Use(AbilityUseParams useParams)
     {
         DealRadialDamage(useParams);
         PlayParticleEffect();
+        audioSource.clip = config.GetAudioClip();
+        audioSource.Play();
     }
 
     private void PlayParticleEffect()
@@ -52,7 +56,7 @@ public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
             if (damageable != null && !hitPlayer)
             {
                 float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget(); // TODO ok Rick?
-                damageable.AdjustHealth(damageToDeal);
+                damageable.TakeDamage(damageToDeal);
             }
         }
     }

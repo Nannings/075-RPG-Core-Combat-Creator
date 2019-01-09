@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: SH L1
   m_EditorClassIdentifier: 
   energyCost: 50
-  particlePrefab: {fileID: 0}
+  particlePrefab: {fileID: 6821326599225414721, guid: 9c06897f376c40c41aa4d64b178c228b,
+    type: 3}
+  audioClip: {fileID: 8300000, guid: 7d0221a36e9cc9645aac35731abf3677, type: 3}
   extraHealth: 50

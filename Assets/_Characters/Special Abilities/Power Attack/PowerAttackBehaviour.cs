@@ -7,6 +7,7 @@ namespace RPG.Characters
     public class PowerAttackBehaviour : MonoBehaviour, ISpecialAbility
     {
         PowerAttackConfig config;
+        AudioSource audioSource = null;
 
         public void SetConfig(PowerAttackConfig configToSet)
         {
@@ -17,6 +18,7 @@ namespace RPG.Characters
         void Start()
         {
             print("Power Attack behaviour attached to " + gameObject.name);
+            audioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -30,6 +32,8 @@ namespace RPG.Characters
             print("Power attack used by: " + gameObject.name);
             DealDamage(useParams);
             PlayParticleEffect();
+            audioSource.clip = config.GetAudioClip();
+            audioSource.Play();
         }
 
         private void PlayParticleEffect()
@@ -43,7 +47,7 @@ namespace RPG.Characters
         private void DealDamage(AbilityUseParams useParams)
         {
             float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
-            useParams.target.AdjustHealth(damageToDeal);
+            useParams.target.TakeDamage(damageToDeal);
         }
     }
 }
