@@ -48,7 +48,8 @@ public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
         foreach (RaycastHit hit in hits)
         {
             var damageable = hit.collider.gameObject.GetComponent<IDamageable>();
-            if (damageable != null)
+            bool hitPlayer = hit.collider.gameObject.GetComponent<Player>();
+            if (damageable != null && !hitPlayer)
             {
                 float damageToDeal = useParams.baseDamage + config.GetDamageToEachTarget(); // TODO ok Rick?
                 damageable.AdjustHealth(damageToDeal);
