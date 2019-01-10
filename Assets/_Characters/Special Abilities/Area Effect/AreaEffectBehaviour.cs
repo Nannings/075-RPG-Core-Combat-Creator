@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Characters;
@@ -8,31 +8,31 @@ using System;
 public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
 
     AreaEffectConfig config;
-    AudioSource audioSource = null;
+	AudioSource audioSource = null;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void SetConfig(AreaEffectConfig configToSet)
     {
         this.config = configToSet;
     }
 
-	// Use this for initialization
-	void Start () {
-		print("Area Effect behaviour attached to " + gameObject.name);
-        audioSource = GetComponent<AudioSource>();
-    }
-	
-
     public void Use(AbilityUseParams useParams)
     {
         DealRadialDamage(useParams);
         PlayParticleEffect();
-        audioSource.clip = config.GetAudioClip();
-        audioSource.Play();
+		audioSource.clip = config.GetAudioClip();
+		audioSource.Play();
     }
 
     private void PlayParticleEffect()
     {
-        var prefab = Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
+        var particlePrefab = config.GetParticlePrefab();
+        var prefab = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
+        // TODO decide if particle system attaches to player
         ParticleSystem myParticleSystem = prefab.GetComponent<ParticleSystem>();
         myParticleSystem.Play();
         Destroy(prefab, myParticleSystem.main.duration);
@@ -40,7 +40,6 @@ public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
 
     private void DealRadialDamage(AbilityUseParams useParams)
     {
-        print("Area Effect used by " + gameObject.name);
         // Static sphere cast for targets
         RaycastHit[] hits = Physics.SphereCastAll(
             transform.position,
