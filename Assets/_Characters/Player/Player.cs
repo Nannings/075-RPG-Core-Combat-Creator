@@ -11,7 +11,7 @@ using RPG.Core;
 
 namespace RPG.Characters
 {
-    public class Player : MonoBehaviour, IDamageable
+    public class Player : MonoBehaviour
     {
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon currentWeaponConfig = null;
@@ -34,10 +34,7 @@ namespace RPG.Characters
 
         void Start()
         {
-			audioSource = GetComponent<AudioSource>();
-
             RegisterForMouseClick();
-            SetCurrentMaxHealth();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
             AttachInitialAbilities();
@@ -64,7 +61,8 @@ namespace RPG.Characters
 
         void Update()
         {
-            if (healthAsPercentage > Mathf.Epsilon)
+            var healthPercentage = GetComponent<HealthSystem>().healthAsPercentage;
+            if (healthPercentage > Mathf.Epsilon)
             {
                 ScanForAbilityKeyDown();
             }
@@ -79,11 +77,6 @@ namespace RPG.Characters
                     AttemptSpecialAbility(keyIndex);
                 }
             }
-        }
-
-        private void SetCurrentMaxHealth()
-        {
-            currentHealthPoints = maxHealthPoints;
         }
 
         private void SetAttackAnimation()
