@@ -8,7 +8,6 @@ namespace RPG.Characters
     [SelectionBase]
     public class Character : MonoBehaviour
     {
-
         [Header("Animator")]
         [SerializeField] RuntimeAnimatorController animatorController;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
@@ -34,12 +33,12 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 1.0f;
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
-        Vector3 clickPoint;
         NavMeshAgent navMeshAgent;
         Animator animator;
         Rigidbody rigidbody;
         float turnAmount;
         float forwardAmount;
+        bool isAlive = true;
 
         void Awake()
         {
@@ -72,17 +71,9 @@ namespace RPG.Characters
             navMeshAgent.autoBraking = false;
         }
 
-        void Start()
-        {
-            CameraRaycaster cameraRaycaster = Camera.main.GetComponent<CameraUI.CameraRaycaster>();
-
-            cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
-            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-        }
-
         private void Update()
         {
-            if(navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+            if(navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance  && isAlive)
             {
                 Move(navMeshAgent.desiredVelocity);
             }
@@ -92,16 +83,21 @@ namespace RPG.Characters
             }
         }
 
-        public void Move(Vector3 movement)
+        public void Kill()
+        {
+            isAlive = false;
+        }
+
+        public void SetDestination(Vector3 wordPosition)
+        {
+            navMeshAgent.destination = wordPosition;
+        }
+
+        void Move(Vector3 movement)
         {
             SetForwardAndTurn(movement);
             ApplyExtraTurnRotation();
             UpdateAnimator();
-        }
-
-        public void Kill()
-        {
-
         }
 
         void SetForwardAndTurn(Vector3 movement)
@@ -129,23 +125,6 @@ namespace RPG.Characters
             // help the character turn faster (this is in addition to root rotation in the animation)
             float turnSpeed = Mathf.Lerp(stationaryTurnSpeed, movingTurnSpeed, forwardAmount);
             transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
-        }
-
-
-        void OnMouseOverPotentiallyWalkable(Vector3 destination)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                navMeshAgent.SetDestination(destination);
-            }    
-        }
-
-        void OnMouseOverEnemy(Enemy enemy)
-        {
-            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
-            {
-                navMeshAgent.SetDestination(enemy.transform.position);
-            }
         }
 
         private void OnAnimatorMove()

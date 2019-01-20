@@ -20,7 +20,7 @@ namespace RPG.Characters
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
 
         bool isAttacking = false;
-        Player player = null;
+        PlayerMovement player = null;
 
         public void TakeDamage(float damage)
         {
@@ -29,7 +29,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            player = FindObjectOfType<Player>();
+            player = FindObjectOfType<PlayerMovement>();
         }
 
         void Update()
