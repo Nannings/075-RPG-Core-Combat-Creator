@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394593c1f07eb9945b7f697af949f20d, type: 3}
   m_Name: Hoe
   m_EditorClassIdentifier: 
-  gripTransform: {fileID: 4219815134937942, guid: 51110a05772d4ea44bc054e61245f8e7,
-    type: 3}
-  weaponPrefab: {fileID: 1274797246840802, guid: cc0dbe33ee8adbe4eb124e2d95d37fe4,
-    type: 3}
-  attackAnimation: {fileID: 7400000, guid: f181d8b8a260da94da3921e7127b9e3f, type: 3}
-  minTimeBetweenHits: 0.7
+  gripTransform: {fileID: 0}
+  weaponPrefab: {fileID: 0}
+  attackAnimation: {fileID: 0}
+  minTimeBetweenHits: 0.5
   maxAttackRange: 2
   additionalDamage: 10
