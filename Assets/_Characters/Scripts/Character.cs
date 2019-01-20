@@ -93,6 +93,11 @@ namespace RPG.Characters
             navMeshAgent.destination = wordPosition;
         }
 
+        public AnimatorOverrideController GetOverrideController()
+        {
+            return animatorOverrideController;
+        }
+
         void Move(Vector3 movement)
         {
             SetForwardAndTurn(movement);
