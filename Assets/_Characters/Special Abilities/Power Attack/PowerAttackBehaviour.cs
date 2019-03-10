@@ -24,6 +24,7 @@ namespace RPG.Characters
             print("Power attack used by: " + gameObject.name);
             DealDamage(target);
             PlayParticleEffect(); // TODO find way of moving audio to parent class
+            PlayAbilityAnimation();
         }
 
         private void DealDamage(GameObject target)
